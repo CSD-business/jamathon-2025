@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://8442tv453kl7"]
+
+[ext_resource type="Script" path="res://scripts/plantstem.gd" id="1_1be3x"]
+[ext_resource type="Script" path="res://scenes/plantpath.gd" id="2_rlxye"]
+[ext_resource type="Script" path="res://scripts/stemgrower.gd" id="3_5nt1y"]
+[ext_resource type="Texture2D" uid="uid://oi8jmjexx8jk" path="res://textures/white_vine.png" id="3_eolli"]
+
+[sub_resource type="Curve2D" id="Curve2D_cit1f"]
+
+[node name="PlantStem" type="Node2D"]
+position = Vector2(273, 254)
+script = ExtResource("1_1be3x")
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(-209, -1)
+curve = SubResource("Curve2D_cit1f")
+script = ExtResource("2_rlxye")
+
+[node name="StemGrower" type="PathFollow2D" parent="Path2D"]
+script = ExtResource("3_5nt1y")
+
+[node name="StemPiece" type="Sprite2D" parent="Path2D/StemGrower"]
+visible = false
+texture = ExtResource("3_eolli")
