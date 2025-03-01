@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://cs44b6cexdcys"]
+
+[ext_resource type="Script" path="res://scripts/stembranch.gd" id="1_c2dr3"]
+[ext_resource type="Script" path="res://scripts/branchpath.gd" id="2_c5ymk"]
+[ext_resource type="Script" path="res://scenes/BranchGrower.gd" id="3_dilki"]
+[ext_resource type="Texture2D" uid="uid://oi8jmjexx8jk" path="res://textures/white_vine.png" id="4_7jkk3"]
+
+[sub_resource type="Curve2D" id="Curve2D_cit1f"]
+
+[node name="BranchStem" type="Node2D"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+rotation = 0.418879
+script = ExtResource("1_c2dr3")
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)
+curve = SubResource("Curve2D_cit1f")
+script = ExtResource("2_c5ymk")
+
+[node name="StemGrower" type="PathFollow2D" parent="Path2D"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+script = ExtResource("3_dilki")
+
+[node name="StemPiece" type="Sprite2D" parent="Path2D/StemGrower"]
+visible = false
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("4_7jkk3")
+
+[connection signal="spawnbranch" from="Path2D/StemGrower" to="." method="_on_stem_grower_spawnbranch"]
+[connection signal="spawnleaf" from="Path2D/StemGrower" to="." method="_on_stem_grower_spawnleaf"]

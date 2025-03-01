@@ -3,7 +3,6 @@ extends PathFollow2D
 @export var Leaf : Node
 var abundance = randi_range(18,30)
 var counter = 0
-var fertility = randi_range(3,5)
 signal spawnleaf
 signal spawnbranch
 
@@ -20,13 +19,10 @@ func grow():
 	progress += 1
 	new_stem.texture = load(StemArt)
 	new_stem.position = position
-	new_stem.scale = Vector2(growth_ratio,growth_ratio)
+	new_stem.scale = Vector2(growth_ratio/2,growth_ratio/2)
 	add_sibling(new_stem)
 	counter+=1
 	if counter % abundance == 0:
 		spawnleaf.emit()
-	if progress_ratio > .3 and randi_range(1,20) == 1 and fertility > 1:
-		spawnbranch.emit(position)
-		fertility -= 1
-	if progress_ratio>.8: queue_free()
+	if progress_ratio>.9: queue_free()
 	

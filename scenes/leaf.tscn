@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://dd4f6yupwwqci"]
+
+[ext_resource type="Script" path="res://scripts/leaf.gd" id="1_px4uf"]
+[ext_resource type="Texture2D" uid="uid://brnho5ms5q2rv" path="res://textures/leaf.png" id="1_se4fe"]
+[ext_resource type="Script" path="res://scripts/bob_up_and_own.gd" id="2_wv4wx"]
+[ext_resource type="AudioStream" uid="uid://bpryi71id37ci" path="res://audio/hitHurt.wav" id="4_abdk8"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qc277"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3jbh3"]
+radius = 5.0
+height = 21.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_enmdm"]
+size = Vector2(2, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_otj6a"]
+size = Vector2(18.75, 1.75)
+
+[node name="Leaf" type="Node2D"]
+script = ExtResource("1_px4uf")
+HP = 2
+
+[node name="LeafRB" type="RigidBody2D" parent="."]
+collision_layer = 2
+input_pickable = true
+mass = 0.01
+physics_material_override = SubResource("PhysicsMaterial_qc277")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeafRB"]
+position = Vector2(12, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_3jbh3")
+
+[node name="Sprite2D" type="Sprite2D" parent="LeafRB"]
+texture_filter = 1
+position = Vector2(12, 0)
+texture = ExtResource("1_se4fe")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="LeafRB" groups=["QueueOnDeath"]]
+node_a = NodePath("..")
+node_b = NodePath("../Anchor")
+
+[node name="Anchor" type="StaticBody2D" parent="LeafRB" groups=["QueueOnDeath"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeafRB/Anchor"]
+shape = SubResource("RectangleShape2D_enmdm")
+
+[node name="Bottom" type="StaticBody2D" parent="." groups=["QueueOnDeath"]]
+position = Vector2(0, -4)
+script = ExtResource("2_wv4wx")
+FOLLOW_SPEED = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom"]
+position = Vector2(10, 11)
+shape = SubResource("RectangleShape2D_otj6a")
+
+[node name="Hurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_abdk8")
+
+[connection signal="mouse_entered" from="LeafRB" to="." method="_on_leaf_rb_mouse_entered"]
+[connection signal="mouse_exited" from="LeafRB" to="." method="_on_leaf_rb_mouse_exited"]
