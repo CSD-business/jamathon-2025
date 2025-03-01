@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/stembranch.gd" id="1_c2dr3"]
 [ext_resource type="Script" path="res://scripts/branchpath.gd" id="2_c5ymk"]
-[ext_resource type="Script" path="res://scenes/BranchGrower.gd" id="3_dilki"]
+[ext_resource type="Script" path="res://scripts/BranchGrower.gd" id="3_dilki"]
 [ext_resource type="Texture2D" uid="uid://oi8jmjexx8jk" path="res://textures/white_vine.png" id="4_7jkk3"]
 
 [sub_resource type="Curve2D" id="Curve2D_cit1f"]
@@ -28,3 +28,4 @@ texture = ExtResource("4_7jkk3")
 
 [connection signal="spawnbranch" from="Path2D/StemGrower" to="." method="_on_stem_grower_spawnbranch"]
 [connection signal="spawnleaf" from="Path2D/StemGrower" to="." method="_on_stem_grower_spawnleaf"]
+[connection signal="spawnpiece" from="Path2D/StemGrower" to="." method="_on_stem_grower_spawnpiece"]

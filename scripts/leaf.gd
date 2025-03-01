@@ -1,15 +1,14 @@
 extends Node2D
 var is_selected : bool
+var LeafRB = load("res://scenes/leaf_rb.tscn")
 @export var HP : int
+func _init():
+	pass
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and is_selected:
 			take_damage(1)
 			check_death()
-func _on_leaf_rb_mouse_entered():
-	is_selected = true
-func _on_leaf_rb_mouse_exited():
-	is_selected = false
 func take_damage(damage):
 	HP = HP - damage
 	modulate = (Color(1,0,0,1))
@@ -18,7 +17,21 @@ func take_damage(damage):
 	modulate = (Color(1,1,1,1))
 func check_death():
 	if HP <= 0:
-		for child in self.find_children("*"):
-			if child.is_in_group("QueueOnDeath"):
-				child.queue_free()
+		$Hurt.play()
+		var new_leafrb = LeafRB.instantiate()
+		if scale.x == -1:
+			new_leafrb.scale.x = -1
+		new_leafrb.linear_velocity = Vector2(randf_range(-60,60),randf_range(-100,-50))
+		new_leafrb.position = self.position
+		add_sibling(new_leafrb)
+		get_parent().leaves -=1
+		get_parent().can_wither = true
+		print(get_parent().leaves)
+		queue_free()
 		
+		
+
+func _on_leaf_area_2d_mouse_entered():
+	is_selected = true
+func _on_leaf_area_2d_mouse_exited():
+	is_selected = false

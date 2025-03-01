@@ -1,10 +1,11 @@
 extends PathFollow2D
 @export var StemArt = "res://textures/white_vine.png"
 @export var Leaf : Node
-var abundance = randi_range(18,30)
+var abundance = randi_range(50,80)
 var counter = 0
 signal spawnleaf
 signal spawnbranch
+signal spawnpiece
 
 func _init():
 	print(abundance)
@@ -24,5 +25,5 @@ func grow():
 	counter+=1
 	if counter % abundance == 0:
 		spawnleaf.emit()
-	if progress_ratio>.9: queue_free()
+	if progress_ratio>.3: queue_free()
 	

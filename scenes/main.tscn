@@ -1,3 +1,18 @@
-[gd_scene format=3 uid="uid://ljblkbpqdie8"]
+[gd_scene load_steps=3 format=3 uid="uid://ljblkbpqdie8"]
+
+[ext_resource type="PackedScene" uid="uid://8442tv453kl7" path="res://scenes/plantstem.tscn" id="1_srmiu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f1aec"]
+size = Vector2(214, 20)
 
 [node name="Main" type="Node2D"]
+
+[node name="PlantStem" parent="." instance=ExtResource("1_srmiu")]
+position = Vector2(114, 304)
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(103, 322)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(2.08165e-12, -12)
+shape = SubResource("RectangleShape2D_f1aec")

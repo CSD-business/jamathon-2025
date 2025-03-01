@@ -8,7 +8,7 @@
 [sub_resource type="Curve2D" id="Curve2D_cit1f"]
 
 [node name="PlantStem" type="Node2D"]
-position = Vector2(78, 244)
+position = Vector2(2.08165e-12, 2.08165e-12)
 script = ExtResource("1_foa0p")
 
 [node name="Path2D" type="Path2D" parent="."]
@@ -25,3 +25,4 @@ texture = ExtResource("3_eolli")
 
 [connection signal="spawnbranch" from="Path2D/StemGrower" to="." method="_on_stem_grower_spawnbranch"]
 [connection signal="spawnleaf" from="Path2D/StemGrower" to="." method="_on_stem_grower_spawnleaf"]
+[connection signal="spawnpiece" from="Path2D/StemGrower" to="." method="_on_stem_grower_spawnpiece"]
