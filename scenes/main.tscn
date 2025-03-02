@@ -1,26 +1,63 @@
-[gd_scene load_steps=7 format=3 uid="uid://ljblkbpqdie8"]
+[gd_scene load_steps=22 format=3 uid="uid://ljblkbpqdie8"]
 
-[ext_resource type="PackedScene" uid="uid://8442tv453kl7" path="res://scenes/plantstem.tscn" id="1_srmiu"]
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_1sgwn"]
 [ext_resource type="Script" path="res://scripts/collection_area.gd" id="3_e4dlx"]
-[ext_resource type="PackedScene" uid="uid://c25u3lrip0spf" path="res://scenes/acorn.tscn" id="4_h1j63"]
+[ext_resource type="Theme" uid="uid://c3q6ljbe1eah0" path="res://resources/default.tres" id="4_5hvon"]
 [ext_resource type="AudioStream" uid="uid://c6rf5ipyk3q2d" path="res://audio/pickupCoin.wav" id="4_j23m1"]
+[ext_resource type="Script" path="res://scripts/Upgrades.gd" id="4_ob78i"]
+[ext_resource type="Script" path="res://scripts/AcornSpawner.gd" id="5_sbi76"]
+[ext_resource type="Texture2D" uid="uid://ci0t0rwon08bv" path="res://textures/faster_growth.png" id="5_wuwpd"]
+[ext_resource type="Texture2D" uid="uid://suouyb61ypxy" path="res://textures/higherdamage.png" id="6_hssp3"]
+[ext_resource type="Script" path="res://scripts/button.gd" id="7_44mv5"]
+[ext_resource type="Texture2D" uid="uid://dt72kkdx6f0th" path="res://textures/more_acorns.png" id="7_hlbvg"]
+[ext_resource type="AudioStream" uid="uid://gwjg2wh3788y" path="res://audio/fail.wav" id="9_a1u6q"]
+[ext_resource type="AudioStream" uid="uid://daxhbks21rlif" path="res://audio/success.wav" id="10_dci47"]
+[ext_resource type="Script" path="res://scenes/HigherDamage.gd" id="10_gxwfw"]
+[ext_resource type="Script" path="res://scripts/money.gd" id="11_dwnsl"]
+[ext_resource type="Texture2D" uid="uid://c8bdjx25wsya5" path="res://textures/trophy.png" id="11_kiqj3"]
+[ext_resource type="Script" path="res://scenes/Victory.gd" id="13_1ir5h"]
+[ext_resource type="Script" path="res://scripts/Winner.gd" id="14_q31q2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f1aec"]
 size = Vector2(214, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_31bj3"]
+size = Vector2(20, 380)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_06634"]
+size = Vector2(178, 20)
+
+[sub_resource type="Curve2D" id="Curve2D_hmvmo"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 2.08165e-12, 2.08165e-12, 0, 0, 0, 0, 120, 2.08165e-12)
+}
+point_count = 2
 
 [node name="Main" type="Node2D"]
-
-[node name="PlantStem" parent="." instance=ExtResource("1_srmiu")]
-position = Vector2(114, 304)
+script = ExtResource("1_1sgwn")
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(103, 322)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-position = Vector2(2.08165e-12, -12)
+position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_f1aec")
+
+[node name="Slides" type="StaticBody2D" parent="."]
+position = Vector2(166, 306)
+rotation = 0.0523599
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slides"]
+position = Vector2(-6.67434, -172.44)
+shape = SubResource("RectangleShape2D_31bj3")
+
+[node name="Slides2" type="StaticBody2D" parent="."]
+position = Vector2(5, 306)
+rotation = -0.0523599
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slides2"]
+position = Vector2(-6.67434, -172.44)
+shape = SubResource("RectangleShape2D_31bj3")
 
 [node name="Collection Area" type="Area2D" parent="."]
 position = Vector2(164, 30)
@@ -30,11 +67,134 @@ script = ExtResource("3_e4dlx")
 stream = ExtResource("4_j23m1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collection Area"]
+position = Vector2(-89, -21)
 shape = SubResource("RectangleShape2D_06634")
 
-[node name="Acorn" parent="." instance=ExtResource("4_h1j63")]
-position = Vector2(61, 175)
+[node name="AcornSpawner" type="Path2D" parent="."]
+position = Vector2(20, -20)
+curve = SubResource("Curve2D_hmvmo")
 
-[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[node name="PathFollow2D" type="PathFollow2D" parent="AcornSpawner"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+script = ExtResource("5_sbi76")
+
+[node name="Timer" type="Timer" parent="AcornSpawner"]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="Upgrades" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_ob78i")
+
+[node name="FasterGrowth" type="Button" parent="Upgrades"]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+layout_mode = 0
+offset_left = 78.0
+offset_top = 31.0
+offset_right = 112.0
+offset_bottom = 55.0
+theme = ExtResource("4_5hvon")
+text = "3"
+icon = ExtResource("5_wuwpd")
+script = ExtResource("7_44mv5")
+cost = 3
+
+[node name="HigherDamage" type="Button" parent="Upgrades"]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+layout_mode = 0
+offset_left = 2.0
+offset_top = 31.0
+offset_right = 36.0
+offset_bottom = 55.0
+theme = ExtResource("4_5hvon")
+text = "1"
+icon = ExtResource("6_hssp3")
+script = ExtResource("10_gxwfw")
+cost = 1
+
+[node name="MoreAcorns" type="Button" parent="Upgrades"]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+layout_mode = 0
+offset_left = 40.0
+offset_top = 31.0
+offset_right = 74.0
+offset_bottom = 55.0
+theme = ExtResource("4_5hvon")
+text = "1"
+icon = ExtResource("7_hlbvg")
+script = ExtResource("7_44mv5")
+cost = 1
+
+[node name="Victory" type="Button" parent="Upgrades"]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+layout_mode = 0
+offset_left = 116.0
+offset_top = 31.0
+offset_right = 158.0
+offset_bottom = 55.0
+theme = ExtResource("4_5hvon")
+text = "50"
+icon = ExtResource("11_kiqj3")
+script = ExtResource("13_1ir5h")
+cost = 25
+
+[node name="Fail" type="AudioStreamPlayer" parent="Upgrades"]
+stream = ExtResource("9_a1u6q")
+
+[node name="Success" type="AudioStreamPlayer" parent="Upgrades"]
+stream = ExtResource("10_dci47")
+
+[node name="Money" type="RichTextLabel" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+offset_left = -1.0
+offset_top = -17.0
+offset_right = 165.0
+offset_bottom = 49.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("4_5hvon")
+bbcode_enabled = true
+text = "
+[shake][center]7 leaves"
+fit_content = true
+drag_and_drop_selection_enabled = false
+script = ExtResource("11_dwnsl")
+
+[node name="Winner" type="RichTextLabel" parent="."]
+modulate = Color(0.847059, 0.847059, 0.847059, 0)
+z_index = 2
+texture_filter = 1
+clip_contents = false
+offset_left = -15.0
+offset_top = 54.0
+offset_right = 150.0
+offset_bottom = 178.0
+mouse_filter = 2
+theme = ExtResource("4_5hvon")
+bbcode_enabled = true
+text = "[tornado][center]great work
+
+"
+script = ExtResource("14_q31q2")
+
+[connection signal="child_entered_tree" from="." to="Collection Area" method="_on_main_child_entered_tree"]
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 [connection signal="body_entered" from="Collection Area" to="Collection Area" method="_on_body_entered"]
+[connection signal="timeout" from="AcornSpawner/Timer" to="AcornSpawner/PathFollow2D" method="_on_timer_timeout"]
+[connection signal="win" from="Upgrades" to="." method="_on_upgrades_win"]
+[connection signal="win" from="Upgrades" to="Upgrades/Victory" method="_on_upgrades_win"]
+[connection signal="win" from="Upgrades" to="Winner" method="_on_upgrades_win"]
+[connection signal="pressed" from="Upgrades/FasterGrowth" to="Upgrades" method="_on_faster_growth_pressed"]
+[connection signal="pressed" from="Upgrades/HigherDamage" to="Upgrades" method="_on_higher_damage_pressed"]
+[connection signal="pressed" from="Upgrades/MoreAcorns" to="Upgrades" method="_on_more_acorns_pressed"]
+[connection signal="pressed" from="Upgrades/Victory" to="Upgrades" method="_on_victory_pressed"]

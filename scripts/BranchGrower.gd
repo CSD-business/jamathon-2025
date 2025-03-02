@@ -8,7 +8,7 @@ signal spawnbranch
 signal spawnpiece
 
 func _init():
-	print(abundance)
+	pass
 	
 func _process(delta):
 	if randi_range(0,16) > 1:

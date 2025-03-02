@@ -13,7 +13,7 @@ func _on_stem_grower_spawnleaf():
 	new_leaf.name = "Leaf"
 	add_child(new_leaf)
 	leaves+=1
-	print(leaves)
+
 
 func _on_stem_grower_spawnbranch(pos):
 	var flip = randi_range(0,1)
@@ -42,3 +42,6 @@ func wither():
 				await get_tree().create_timer(.01).timeout
 			else:
 				node.queue_free()
+	GlobalVar.trees -= 1
+	print(GlobalVar.trees)
+	queue_free()
