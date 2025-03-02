@@ -1,11 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://ljblkbpqdie8"]
+[gd_scene load_steps=6 format=3 uid="uid://ljblkbpqdie8"]
 
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_1sgwn"]
 [ext_resource type="PackedScene" uid="uid://8442tv453kl7" path="res://scenes/plantstem.tscn" id="1_srmiu"]
+[ext_resource type="Script" path="res://scenes/collection_area.gd" id="3_e4dlx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f1aec"]
 size = Vector2(214, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_06634"]
+
 [node name="Main" type="Node2D"]
+script = ExtResource("1_1sgwn")
 
 [node name="PlantStem" parent="." instance=ExtResource("1_srmiu")]
 position = Vector2(114, 304)
@@ -16,3 +21,14 @@ position = Vector2(103, 322)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 position = Vector2(2.08165e-12, -12)
 shape = SubResource("RectangleShape2D_f1aec")
+
+[node name="Collection Area" type="Area2D" parent="."]
+position = Vector2(164, 30)
+script = ExtResource("3_e4dlx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collection Area"]
+shape = SubResource("RectangleShape2D_06634")
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
+[connection signal="body_entered" from="Collection Area" to="." method="_on_collection_area_body_entered"]

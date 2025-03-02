@@ -19,5 +19,5 @@ func _physics_process(delta):
 		if t < 1:
 			t += .6 * delta
 		else:
-			t = 1
+			queue_free()
 

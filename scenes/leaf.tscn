@@ -9,7 +9,7 @@
 radius = 5.0
 height = 21.0
 
-[node name="Leaf" type="Node2D"]
+[node name="Leaf" type="Node2D" groups=["leaf"]]
 script = ExtResource("1_px4uf")
 HP = 2
 

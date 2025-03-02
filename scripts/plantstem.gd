@@ -40,5 +40,5 @@ func wither():
 			if node.is_in_group("witherable"):
 				node.wither()
 				await get_tree().create_timer(.01).timeout
-			elif node.is_in_group("leaf"):
-				pass
+			else:
+				node.queue_free()

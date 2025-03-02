@@ -6,6 +6,9 @@ var selected = false
 var leaf = load("res://leaf_rb.tscn")
 var anchor = load("res://scenes/anchor.tscn")
 
+func _init():
+	add_to_group("leaf")
+	
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and held:

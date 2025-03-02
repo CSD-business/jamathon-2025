@@ -13,7 +13,7 @@ height = 21.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_78666"]
 
-[node name="LeafRB" type="RigidBody2D"]
+[node name="LeafRB" type="RigidBody2D" groups=["leaf"]]
 input_pickable = true
 mass = 0.01
 physics_material_override = SubResource("PhysicsMaterial_qc277")
