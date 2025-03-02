@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ljblkbpqdie8"]
+[gd_scene load_steps=7 format=3 uid="uid://ljblkbpqdie8"]
 
-[ext_resource type="Script" path="res://scenes/main.gd" id="1_1sgwn"]
 [ext_resource type="PackedScene" uid="uid://8442tv453kl7" path="res://scenes/plantstem.tscn" id="1_srmiu"]
-[ext_resource type="Script" path="res://scenes/collection_area.gd" id="3_e4dlx"]
+[ext_resource type="Script" path="res://scripts/collection_area.gd" id="3_e4dlx"]
+[ext_resource type="PackedScene" uid="uid://c25u3lrip0spf" path="res://scenes/acorn.tscn" id="4_h1j63"]
+[ext_resource type="AudioStream" uid="uid://c6rf5ipyk3q2d" path="res://audio/pickupCoin.wav" id="4_j23m1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f1aec"]
 size = Vector2(214, 20)
@@ -10,7 +11,6 @@ size = Vector2(214, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_06634"]
 
 [node name="Main" type="Node2D"]
-script = ExtResource("1_1sgwn")
 
 [node name="PlantStem" parent="." instance=ExtResource("1_srmiu")]
 position = Vector2(114, 304)
@@ -26,9 +26,15 @@ shape = SubResource("RectangleShape2D_f1aec")
 position = Vector2(164, 30)
 script = ExtResource("3_e4dlx")
 
+[node name="Collect" type="AudioStreamPlayer" parent="Collection Area"]
+stream = ExtResource("4_j23m1")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collection Area"]
 shape = SubResource("RectangleShape2D_06634")
 
+[node name="Acorn" parent="." instance=ExtResource("4_h1j63")]
+position = Vector2(61, 175)
+
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
-[connection signal="body_entered" from="Collection Area" to="." method="_on_collection_area_body_entered"]
+[connection signal="body_entered" from="Collection Area" to="Collection Area" method="_on_body_entered"]

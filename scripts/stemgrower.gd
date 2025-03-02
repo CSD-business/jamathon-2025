@@ -12,7 +12,7 @@ func _init():
 	print(abundance)
 	
 func _process(delta):
-	if randi_range(0,16) > 1:
+	if randi_range(0,30) < GlobalVar.growth_rate:
 		grow()
 		
 func grow():
