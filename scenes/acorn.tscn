@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c25u3lrip0spf"]
 
-[ext_resource type="Script" path="res://scripts/acorn.gd" id="1_p4g7n"]
+[ext_resource type="Script" uid="uid://36jcfanp867h" path="res://scripts/acorn.gd" id="1_p4g7n"]
 [ext_resource type="Texture2D" uid="uid://dgnb8muc4v1xh" path="res://textures/acornnew.png" id="2_lnr1y"]
 [ext_resource type="Texture2D" uid="uid://dcqv71xrsi3dv" path="res://textures/acorngrowing.png" id="2_ls73h"]
 

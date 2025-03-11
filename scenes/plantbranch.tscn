@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cs44b6cexdcys"]
 
-[ext_resource type="Script" path="res://scripts/stembranch.gd" id="1_c2dr3"]
-[ext_resource type="Script" path="res://scripts/branchpath.gd" id="2_c5ymk"]
-[ext_resource type="Script" path="res://scripts/BranchGrower.gd" id="3_dilki"]
+[ext_resource type="Script" uid="uid://m7qocw0b5epp" path="res://scripts/stembranch.gd" id="1_c2dr3"]
+[ext_resource type="Script" uid="uid://koahmls57814" path="res://scripts/branchpath.gd" id="2_c5ymk"]
+[ext_resource type="Script" uid="uid://bruo7b468pdr0" path="res://scripts/BranchGrower.gd" id="3_dilki"]
 [ext_resource type="Texture2D" uid="uid://oi8jmjexx8jk" path="res://textures/white_vine.png" id="4_7jkk3"]
 
 [node name="BranchStem" type="Node2D"]

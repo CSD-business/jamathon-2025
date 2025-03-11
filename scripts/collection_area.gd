@@ -7,6 +7,3 @@ func _on_body_entered(body):
 		$Collect.play()
 		GlobalVar.tutorial = false
 		GlobalVar.money += 1
-
-
-

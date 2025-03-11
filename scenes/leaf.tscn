@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://dd4f6yupwwqci"]
 
-[ext_resource type="Script" path="res://scripts/leaf.gd" id="1_px4uf"]
+[ext_resource type="Script" uid="uid://ptdhedsu2dau" path="res://scripts/leaf.gd" id="1_px4uf"]
 [ext_resource type="Texture2D" uid="uid://brnho5ms5q2rv" path="res://textures/leaf.png" id="1_se4fe"]
 [ext_resource type="AudioStream" uid="uid://bpryi71id37ci" path="res://audio/hitHurt.wav" id="4_abdk8"]
-[ext_resource type="Script" path="res://scripts/LeafIdle.gd" id="5_7qjws"]
+[ext_resource type="Script" uid="uid://7rf56hr05t1l" path="res://scripts/LeafIdle.gd" id="5_7qjws"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3jbh3"]
 radius = 5.0

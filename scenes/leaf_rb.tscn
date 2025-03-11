@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://1do65m4q7ebv"]
 
-[ext_resource type="Script" path="res://scripts/leaf_rb.gd" id="1_8114g"]
+[ext_resource type="Script" uid="uid://ct8jq8vrkumms" path="res://scripts/leaf_rb.gd" id="1_8114g"]
 [ext_resource type="Texture2D" uid="uid://brnho5ms5q2rv" path="res://textures/leaf.png" id="2_fkcua"]
 [ext_resource type="AudioStream" uid="uid://4hi2bhohy2tf" path="res://audio/hitFall.wav" id="3_lwt3y"]
 [ext_resource type="Texture2D" uid="uid://dpga4j2rj5bmp" path="res://textures/up_arrow1.png" id="4_xwhqp"]

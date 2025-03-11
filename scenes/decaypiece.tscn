@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dxqtujm1mp0sa"]
 
-[ext_resource type="Script" path="res://decaypiece.gd" id="1_jnmtl"]
+[ext_resource type="Script" uid="uid://b22e8iytac31g" path="res://decaypiece.gd" id="1_jnmtl"]
 [ext_resource type="Texture2D" uid="uid://oi8jmjexx8jk" path="res://textures/white_vine.png" id="2_iar8s"]
 
 [node name="decaypiece" type="Node2D"]

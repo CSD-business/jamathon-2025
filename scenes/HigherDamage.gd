@@ -10,4 +10,3 @@ func flicker():
 	modulate = Color(1,1,1,t)
 	if t < 1:
 		t+=.005
-

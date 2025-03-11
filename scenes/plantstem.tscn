@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://8442tv453kl7"]
 
-[ext_resource type="Script" path="res://scripts/plantstem.gd" id="1_foa0p"]
-[ext_resource type="Script" path="res://scripts/plantpath.gd" id="2_rlxye"]
-[ext_resource type="Script" path="res://scripts/stemgrower.gd" id="3_5nt1y"]
+[ext_resource type="Script" uid="uid://ymr6201nadfs" path="res://scripts/plantstem.gd" id="1_foa0p"]
+[ext_resource type="Script" uid="uid://dw87q0acg2bhm" path="res://scripts/plantpath.gd" id="2_rlxye"]
+[ext_resource type="Script" uid="uid://d0q85oaxf6ptu" path="res://scripts/stemgrower.gd" id="3_5nt1y"]
 [ext_resource type="Texture2D" uid="uid://oi8jmjexx8jk" path="res://textures/white_vine.png" id="3_eolli"]
 
 [sub_resource type="Curve2D" id="Curve2D_cit1f"]
