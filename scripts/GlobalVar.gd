@@ -5,7 +5,7 @@ var growth_rate = 1
 var acorn_chance = 2
 var damage = 1
 var trees = 0
-var max_trees = 3
+var max_trees = 5
 var tutorial = true
 var money = 0
 

@@ -64,13 +64,14 @@ func flicker():
 
 
 func _on_decay_timer_timeout():
-	for i in range(randi_range(20,25)):
-		var new_plant = decaypiece.instantiate()
-		add_child(new_plant)
-		$decaysound.play()
-		$decaysound.volume_db-=.5
-		modulate = Color(1,1,1,fadevalue)
-		fadevalue -= .05
-		await get_tree().create_timer(.1).timeout 
-		GlobalVar.money += .01
-	queue_free()
+	if GlobalVar.tutorial == false:
+		for i in range(randi_range(20,25)):
+			var new_plant = decaypiece.instantiate()
+			add_child(new_plant)
+			$decaysound.play()
+			$decaysound.volume_db-=.5
+			modulate = Color(1,1,1,fadevalue)
+			fadevalue -= .05
+			await get_tree().create_timer(.1).timeout 
+			GlobalVar.money += .01
+		queue_free()

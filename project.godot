@@ -21,11 +21,11 @@ GlobalVar="*res://scripts/GlobalVar.gd"
 
 [display]
 
-window/size/viewport_width=480
-window/size/viewport_height=960
+window/size/viewport_width=320
+window/size/viewport_height=640
 window/stretch/mode="viewport"
 window/stretch/aspect="ignore"
-window/stretch/scale=3.0
+window/stretch/scale=2.0
 window/stretch/scale_mode="integer"
 window/handheld/orientation=1
 

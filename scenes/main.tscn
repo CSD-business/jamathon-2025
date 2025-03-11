@@ -48,7 +48,7 @@ position = Vector2(166, 306)
 rotation = 0.0523599
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Slides"]
-position = Vector2(-6.67434, -172.44)
+position = Vector2(1.98318, -172.34)
 shape = SubResource("RectangleShape2D_31bj3")
 
 [node name="Slides2" type="StaticBody2D" parent="."]
@@ -75,7 +75,8 @@ position = Vector2(20, -20)
 curve = SubResource("Curve2D_hmvmo")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="AcornSpawner"]
-position = Vector2(2.08165e-12, 2.08165e-12)
+position = Vector2(0.294559, 2.08165e-12)
+progress = 0.5
 script = ExtResource("5_sbi76")
 
 [node name="Timer" type="Timer" parent="AcornSpawner"]
